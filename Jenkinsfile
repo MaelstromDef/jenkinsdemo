@@ -5,7 +5,7 @@ pipeline {
         stage('Build Frontend'){
             steps{
                 sh "echo Building Frontend"
-                sh "cd frontend && npm install && npm run build"
+                sh "cd frontend/vite-project && npm install && npm run build"
 
             }
         }
@@ -23,6 +23,11 @@ pipeline {
             steps{
                 sh "echo Building Backend"
                 sh "cd demo && mvn clean install"
+            }
+        }
+        stage('Deploy Backend'){
+            steps{
+                sh "echo Deploying Backend"
             }
         }
     }
