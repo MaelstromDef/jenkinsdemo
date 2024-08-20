@@ -15,7 +15,7 @@ pipeline {
                 script{
                     try{
                         withAWS(region: 'us-east-1', credentials: 'AWS_CREDENTIALS'){
-                            sh "aws s3 sync frontend/vite-project/dist s3://bjgomes-bucket-sdet"
+                            sh "aws s3 sync frontend/vite-project/dist s3://ahuggins-jenkins-test"
                         }
                     }catch(Exception e){
                         echo "${e}"
@@ -42,8 +42,8 @@ pipeline {
                 script{
                     try{
                         withAWS(region: 'us-east-1', credentials: 'AWS_CREDENTIALS'){
-                            sh "aws s3 sync demo/target/*.jar s3://bjgomes-bucket-sdet-backend"
-                            sh "aws elasticbeanstalk create-application-version --application-name ahuggins-jenkins-demo --version-label 0.0.1 --source-bundle S3Bucket="bjgomes-bucket-sdet-backend",S3Key="*.jar""
+                            sh "aws s3 sync demo/target/*.jar s3://ahuggins-jenkins-test-backend"
+                            sh "aws elasticbeanstalk create-application-version --application-name ahuggins-jenkins-demo --version-label 0.0.1 --source-bundle S3Bucket="ahuggins-jenkins-test-backend",S3Key="*.jar""
                             sh "aws elasticbeanstalk update-environment --environment-name your-environment-name --version-label your-version-label"
                         }
                     }catch(Exception e){
