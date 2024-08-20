@@ -14,7 +14,7 @@ pipeline {
                 sh "echo Deploying Frontend"
                 script{
                     withAWS(region: 'us-east-1', credentials: 'AWS_CREDENTIALS'){
-                        sh "aws sync frontend/dist <URL HERE>"
+                        sh "aws s3 sync frontend/dist s3://bjgomes-bucket-sdet"
                     }
                 }
             }
