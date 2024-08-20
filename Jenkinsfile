@@ -4,7 +4,7 @@ pipeline {
     stages{
         stage('Build Frontend'){
             steps{
-                sh "echo Building frontend"
+                sh "echo Building Frontend"
                 sh "cd frontend && npm install && npm run build"
 
             }
@@ -17,6 +17,12 @@ pipeline {
                         sh "aws s3 sync frontend/dist s3://bjgomes-bucket-sdet"
                     }
                 }
+            }
+        }
+        stage('Build Backend'){
+            steps{
+                sh "echo Building Backend"
+                sh "cd demo && mvn clean install"
             }
         }
     }
