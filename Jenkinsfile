@@ -24,16 +24,16 @@ pipeline {
                 }
             }
         }
-        stage('Build Backend'){
-            steps{
-                sh "echo Building Backend"
-                sh "cd demo && mvn clean install"
-            }
-        }
         stage('Test Backend'){
             steps{
                 sh "echo Testing Backend"
                 sh "cd demo && mvn test"
+            }
+        }
+        stage('Build Backend'){
+            steps{
+                sh "echo Building Backend"
+                sh "cd demo && mvn clean install"
             }
         }
         stage('Deploy Backend'){
